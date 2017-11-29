@@ -10,7 +10,7 @@ public class UserAdmin extends User {
         super.setBan(status);
     }
     public void setVIP(boolean status){
-        super.setVIP(status);
+        super.setVip(status);
     }
     public boolean delUser(String login){
         return false;

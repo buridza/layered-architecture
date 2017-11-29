@@ -23,8 +23,6 @@ public class FileUserDAO implements UserDAO{
 			user = new User();
 			user.setName("Ivan");
 			user.setSurname("Ivanov");
-		}catch(FileNotFoundException e) {
-			throw new DAOException("smth happended", e);
 		}catch (IOException e){
 			throw new DAOException("smth happended", e);
 		}
@@ -33,20 +31,40 @@ public class FileUserDAO implements UserDAO{
 	}
 
 	@Override
-	public void registration(User user) {
-
+	public void registration(User user)  throws DAOException {
+		String str="";
+		BufferedWriter bufferedWriter = null;
+		try{
+			bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C:\\Users\\Denis\\Downloads\\Testing\\src\\by\\htp\\library\\resources\\Users.txt")));
+			str+=user.getLogin()+" ";
+			str+=user.getPassword()+" ";
+			str+=user.getName()+" ";
+			str+=user.getSurname()+" ";
+			str+=user.getDob()+" ";
+			str+=user.getVip()+" ";
+			str+=user.getBan()+"\n";
+			bufferedWriter.write(str);
+		}catch(IOException e){
+			throw new DAOException("Что-то произошло", e);
+		}
+		finally {
+			try {
+				bufferedWriter.close();
+			}catch (IOException e){
+				throw new DAOException("Неудалось закрыть файл", e);
+			}
+		}
 		
 	}
 
 	@Override
 	public User findUser(String login) {
-		String str = new String();
+		String str = null;
 		String[] arrStr = null;
 		Scanner sc=null;
 		User user=null;
 		try {
 			sc = new Scanner(new File("C:\\Users\\Denis\\Downloads\\Testing\\src\\by\\htp\\library\\bean\\Users.txt"));
-
 			while (sc.hasNextLine()) {
 				str = sc.nextLine();
 				arrStr = str.split(" ");
@@ -55,7 +73,7 @@ public class FileUserDAO implements UserDAO{
 					user.setLogin(arrStr[0]);
 					user.setName(arrStr[1]);
 					user.setSurname(arrStr[2]);
-					user.setDOB(Integer.parseInt(arrStr[3]), Integer.parseInt(arrStr[4]),Integer.parseInt(arrStr[5]));
+					user.setDob(Integer.parseInt(arrStr[3]), Integer.parseInt(arrStr[4]),Integer.parseInt(arrStr[5]));
 				}
 			}
 		} catch (IOException e) {

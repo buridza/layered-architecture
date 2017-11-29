@@ -1,14 +1,13 @@
 package by.htp.library.service.impl;
 
-import java.io.FileNotFoundException;
-
 import by.htp.library.bean.User;
 import by.htp.library.dao.DAOFactory;
 import by.htp.library.dao.UserDAO;
 import by.htp.library.dao.exception.DAOException;
-import by.htp.library.dao.impl.FileUserDAO;
-import by.htp.library.service.ServiceException;
 import by.htp.library.service.UserService;
+import by.htp.library.service.exception.ServiceException;
+
+import java.util.LinkedList;
 
 public class UserServiceImpl implements UserService {
 
@@ -35,13 +34,25 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void registration(User user) {
+	public void registration(User user) throws ServiceException {
 		// validation
 
 		DAOFactory daoFactory = DAOFactory.getInstance();
-
 		UserDAO userDAO = daoFactory.getUserDAO();
+		if(user.getLogin()==null||user.getLogin().isEmpty()){
+            if(user.getPassword().length()<6||user.getPassword()==null){
+                if(user.getName().isEmpty()||user.getName()==null)
+                    if(user.getSurname().isEmpty()||user.getSurname()==null){
+                    if(user.getDob().isEmpty()||user.getDob()==null){
+                       try{userDAO.registration(user);}
+                       catch (DAOException e){
+                           throw new ServiceException();
+                       }
+                    }
+                    }
+            }
 
+		}
 	}
 
 }

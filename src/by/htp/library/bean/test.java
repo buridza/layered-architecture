@@ -22,7 +22,7 @@ public class test {
         }catch (IOException e){
             //заглушка
             e.printStackTrace();
-        }*/
+        }*//*
 
        // FileWriter writer = new FileWriter("C:\\Users\\Denis\\Downloads\\Testing\\src\\by\\htp\\library\\resources\\Users.txt");
         String str;
@@ -31,7 +31,13 @@ public class test {
         while((str=bufferedReader.readLine())!=null) {
             System.out.println(str);
         }
-       /* */
-
+       *//* *//*
+*/
+        for (int i = 0; i < 256;) {
+            System.out.printf("%3d %3s %3d %3s %3d %3s %3d %3s %3d %3s %3d %3s %3d %3s %3d %3s %3d %3s %3d %3s %3d %3s %3d %3s %3d %3s %3d %3s %3d %3s%n",i,(char)i++,i,(char)i++,i,(char)i++,i,(char)i++,i,(char)i++,i,(char)i++,i,(char)i++,i,(char)i++,i,(char)i++,i,(char)i++,i,(char)i++,i,(char)i++,i,(char)i++,i,(char)i++,i,(char)i++,i,(char)i++);
+        }
     }
+
+
 }
+

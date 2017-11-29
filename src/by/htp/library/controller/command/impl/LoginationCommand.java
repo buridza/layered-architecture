@@ -2,9 +2,9 @@ package by.htp.library.controller.command.impl;
 
 import by.htp.library.bean.User;
 import by.htp.library.controller.command.Command;
-import by.htp.library.service.ServiceException;
 import by.htp.library.service.ServiceFactory;
 import by.htp.library.service.UserService;
+import by.htp.library.service.exception.ServiceException;
 
 public class LoginationCommand implements Command{
 

@@ -17,7 +17,6 @@ public class CommandProvider {
 	}
 	
 	public Command getCommand(String commandName) {
-		
 		return commands.get(commandName);
 	}
 
